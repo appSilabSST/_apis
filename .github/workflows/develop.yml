@@ -1,0 +1,26 @@
+
+on:
+  push: # O workflow será executado em um push
+    branches:
+      - develop # Especifica que o workflow será disparado apenas para o branch 'develop'
+# Nome do workflow
+name: 🚀 Deploy website on push
+
+# Definição dos jobs do workflow
+jobs:
+  web-deploy:
+    name: 🎉 Deploy # Nome do job
+    runs-on: ubuntu-latest # Define o sistema operacional que será usado para executar o job
+
+    # Lista de etapas (steps) a serem executadas
+    steps:
+      - name: 🚚 Get latest code # Nome da etapa
+        uses: actions/checkout@v4 # Usa a ação oficial de checkout para obter o código mais recente do repositório
+
+      - name: 📂 Sync files # Nome da etapa
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Usa a ação FTP-Deploy-Action para sincronizar arquivos via FTP
+        with:
+          server: ${{ secrets.ftp_host }} # O endereço do servidor FTP é fornecido a partir dos segredos do repositório
+          username: ${{ secrets.ftp_user }} # Nome de usuário do FTP fornecido a partir dos segredos do repositório
+          password: ${{ secrets.ftp_pass }} # Senha do FTP fornecida a partir dos segredos do repositório
+          server-dir: public_html/_devTest/v1/ # Diretório no servidor onde os arquivos serão enviados, deve terminar com '/'

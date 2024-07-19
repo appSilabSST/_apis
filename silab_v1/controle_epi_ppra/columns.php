@@ -1,0 +1,68 @@
+<?php
+if (isset($_GET["columns"])) {
+
+    $dados = json_decode(base64_decode($_GET['columns']), true);
+
+    foreach ($dados as $tab => $value) {
+        if ($tab == $table) {
+            if (isset($value['basic'])) {
+                $body_c = explode(",", $value['basic']);
+                foreach ($body_c as $key => $column) {
+                    $body_columns[] = $tab . "." . $column;
+                }
+            }
+            if (isset($value['extensions'])) {
+                foreach ($value['extensions'] as $key => $column) {
+                    $body_columns[] = "$column as $key";
+                }
+            }
+        } elseif ($tab == 'epis') {
+            if (isset($value['basic'])) {
+                $body_c = explode(",", $value['basic']);
+                foreach ($body_c as $key => $column) {
+                    $body_columns[] = $tab . "." . $column;
+                }
+            }
+            if (isset($value['extensions'])) {
+                foreach ($value['extensions'] as $key => $column) {
+                    $body_columns[] = "$column as $key";
+                }
+            }
+            if (strpos($join, "$tab on") === false) {
+                $join .= " LEFT $tab on $tab.id_epi = $table.id_epi";
+            }
+        } elseif ($tab == 'controle_epis_local_trabalho') {
+            if (isset($value['basic'])) {
+                $body_c = explode(",", $value['basic']);
+                foreach ($body_c as $key => $column) {
+                    $body_columns[] = $tab . "." . $column;
+                }
+            }
+            if (isset($value['extensions'])) {
+                foreach ($value['extensions'] as $key => $column) {
+                    $body_columns[] = "$column as $key";
+                }
+            }
+            if (strpos($join, "$tab on") === false) {
+                $join .= " JOIN $tab on $tab.id_controle = $table.id_epis_local_trabalho";
+            }
+        } elseif ($tab == '*************') {
+            if (isset($value['basic'])) {
+                $body_c = explode(",", $value['basic']);
+                foreach ($body_c as $key => $column) {
+                    $body_columns[] = $tab . "." . $column;
+                }
+            }
+            if (isset($value['extensions'])) {
+                foreach ($value['extensions'] as $key => $column) {
+                    $body_columns[] = "$column as $key";
+                }
+            }
+            if (strpos($join, "$tab on") === false) {
+                $join .= "****************";
+            }
+        }
+    }
+
+    $columns = implode(',', $body_columns);
+}
