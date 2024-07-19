@@ -2,7 +2,7 @@
 on:
   push: # O workflow será executado em um push
     branches:
-      - main # Especifica que o workflow será disparado apenas para o branch 'main'
+      - main # Especifica que o workflow será disparado apenas para o branch 'main' 
 
 # Nome do workflow
 name: 🚀 Deploy website on push
