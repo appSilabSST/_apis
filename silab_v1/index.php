@@ -4,8 +4,8 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-include ("conexao.php");
-include ("funcoes.php");
+include("conexao.php");
+include("funcoes.php");
 
 if (!empty($_GET["table"])) {
 
@@ -27,11 +27,11 @@ if (!empty($_GET["table"])) {
 
         try {
 
-            include ("./$table/columns.php");
-            include ("./$table/where.php");
-            include ("./$table/order_by.php");
-            include ("./$table/group_by.php");
-            include ("./$table/limit.php");
+            include("./$table/columns.php");
+            include("./$table/where.php");
+            include("./$table/order_by.php");
+            include("./$table/group_by.php");
+            include("./$table/limit.php");
 
             // echo $sql = "SELECT $columns FROM $table $join $where $group_by $order_by $limit";
             // var_dump($option_value);
@@ -125,7 +125,6 @@ if (!empty($_GET["table"])) {
                 $id = $conecta->lastInsertId();
                 $result = ["status" => "success", "id" => $id];
             }
-
         } catch (PDOException $ex) {
             $result = ["status" => "fail", "Error" => $ex->getMessage()];
             http_response_code(500);
@@ -162,6 +161,10 @@ if (!empty($_GET["table"])) {
                 echo json_encode(["status" => "fail", "error" => "Nenhum campo a ser atualizado fornecido"]);
                 exit;
             }
+
+            // echo $sql = "UPDATE $table SET $body WHERE $where ";
+            // var_dump($params);
+            // exit;
 
             $sql = "UPDATE $table SET $body WHERE $where ";
 
@@ -265,7 +268,6 @@ if (!empty($_GET["table"])) {
             } else {
                 $result = ["status" => "success"];
             }
-
         } catch (PDOException $ex) {
             $result = ["status" => "fail", "Error" => $ex->getMessage()];
             http_response_code(200);
