@@ -2,7 +2,7 @@
 on:
   push: # O workflow será executado em um push
     branches:
-      - main # Especifica que o workflow será disparado apenas para o branch 'main' 
+      - main # Especifica que o workflow será disparado apenas para o branch 'main'
 
 # Nome do workflow
 name: 🚀 Deploy website on push
@@ -11,7 +11,7 @@ name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Deploy # Nome do job
-    runs-on: ubuntu-latest # Define o sistema operacional que será usado para executar o job 
+    runs-on: ubuntu-latest # Define o sistema operacional que será usado para executar o job
 
     # Lista de etapas (steps) a serem executadas
     steps:
@@ -24,5 +24,5 @@ jobs:
           server: ${{ secrets.ftp_host }} # O endereço do servidor FTP é fornecido a partir dos segredos do repositório
           username: ${{ secrets.ftp_user }} # Nome de usuário do FTP fornecido a partir dos segredos do repositório
           password: ${{ secrets.ftp_pass }} # Senha do FTP fornecida a partir dos segredos do repositório
-          server-dir: ${{ secrets.ftp_dir }} # Diretório no servidor onde os arquivos serão enviados, deve terminar com '/'
+          server-dir: public_html/_api/ # Diretório no servidor onde os arquivos serão enviados, deve terminar com '/'
 
