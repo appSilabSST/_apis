@@ -11,7 +11,7 @@ name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Deploy # Nome do job
-    runs-on: ubuntu-latest # Define o sistema operacional que será usado para executar o job
+    runs-on: ubuntu-latest # Define o sistema operacional que será usado para executar o job 
 
     # Lista de etapas (steps) a serem executadas
     steps:
