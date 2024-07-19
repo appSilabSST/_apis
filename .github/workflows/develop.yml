@@ -1,4 +1,3 @@
-
 on:
   push: # O workflow será executado em um push
     branches:
@@ -23,4 +22,4 @@ jobs:
           server: ${{ secrets.ftp_host }} # O endereço do servidor FTP é fornecido a partir dos segredos do repositório
           username: ${{ secrets.ftp_user }} # Nome de usuário do FTP fornecido a partir dos segredos do repositório
           password: ${{ secrets.ftp_pass }} # Senha do FTP fornecida a partir dos segredos do repositório
-          server-dir: public_html/_devTest/v1/ # Diretório no servidor onde os arquivos serão enviados, deve terminar com '/'
+          server-dir: public_html/_api/silab_v1/_devTest/ # Diretório no servidor onde os arquivos serão enviados, deve terminar com '/'
