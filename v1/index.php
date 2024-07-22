@@ -280,5 +280,5 @@ if (!empty($_GET["table"])) {
         }
     }
 } else {
-    echo json_encode(array('status' => 'fail', 'msg' => 'parametro table não foi definida'));
+    echo json_encode(array('status' => 'fail', 'msg' => 'parametro table não foi definida '));
 }
